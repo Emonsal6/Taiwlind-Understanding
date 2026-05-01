@@ -14,12 +14,14 @@
  * There is no config file connecting them — the naming convention IS the mapping.
  *
  * TOKEN LAYERS
- * Tokens are organised in three layers:
+ * Tokens are organised in two layers:
  *   1. Primitive  — raw palette values (gray-900, cream-50, etc.)
- *   2. Semantic   — purpose-based names that reference primitives (surface, text-primary)
- *   3. Component  — map semantic tokens to specific UI elements (btn-primary, btn-secondary)
+ *   2. Semantic   — purpose-based names that reference primitives (surface, text-primary,
+ *                    action-primary, action-secondary, …)
  *
- * Changing a primitive updates every semantic and component token that references it.
+ * Components (e.g. Button) use semantic tokens directly instead of a separate
+ * “component token” alias per widget. Changing a primitive updates every semantic
+ * token that references it.
  */
 
 @import "tailwindcss";
@@ -29,9 +31,17 @@
   /* ── Primitives — raw palette values ──
    * These define the raw colour palette. They generate classes (e.g. bg-cream-50)
    * but you should avoid using them directly — use semantic tokens instead. */
-  --color-gray-900: #111;
-  --color-gray-700: #333;
-  --color-gray-500: #666;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-250: #d1d5db;
+  --color-gray-300: #9ca3af;
+  --color-gray-400: #6b7280;
+  --color-gray-500: #4b5563;
+  --color-gray-600: #374151;
+  --color-gray-700: #1f2937;
+  --color-gray-800: #111827;
+  --color-gray-850: #0b0f19;
+  --color-gray-900: #030712;
   --color-cream-50:  #f7f7f4;
   --color-cream-100: #f2f1ed;
   --color-cream-200: #e6e5e0;
@@ -51,14 +61,8 @@
   --color-action-primary-hover:    var(--color-gray-700);
   --color-action-secondary:        var(--color-cream-200);
   --color-action-secondary-hover:  var(--color-cream-300);
-
-  /* ── Component — map to semantic tokens ──
-   * These power specific UI elements.
-   * e.g. --color-btn-primary → bg-btn-primary, hover:bg-btn-primary-hover */
-  --color-btn-primary:         var(--color-action-primary);
-  --color-btn-primary-hover:   var(--color-action-primary-hover);
-  --color-btn-secondary:       var(--color-action-secondary);
-  --color-btn-secondary-hover: var(--color-action-secondary-hover);
+  /* Text placed on action-primary backgrounds (e.g. primary button label) */
+  --color-on-action-primary:       #ffffff;
 
   /* ── Typography ──
    * --font-{name} → font-{name}
